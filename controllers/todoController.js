@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://abhishek:abhi2@cluster0.saa9ga1.mongodb.net/');
+mongoose.connect('mongodb+srv://abhishek:abhi2@cluster0.jdchm.mongodb.net/');
 
 var todoSchema = new mongoose.Schema({
     item:String
@@ -13,6 +13,12 @@ var Todo = mongoose.model("Todo", todoSchema);
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 module.exports = function(app){
+
+
+app.get('/',function(req,res){
+    res.redirect('/todo');
+})
+
     
     app.get('/todo', function(req, res) {
         Todo.find({})
